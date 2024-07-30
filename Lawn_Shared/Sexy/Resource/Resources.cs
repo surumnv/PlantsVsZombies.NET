@@ -390,6 +390,7 @@ namespace Sexy
             {
                 IMAGE_PLANTSZOMBIES = theManager.GetImageThrow("IMAGE_PLANTSZOMBIES");
                 IMAGE_PARTICLES = theManager.GetImageThrow("IMAGE_PARTICLES");
+                IMAGE_PARTICLES2 = theManager.GetImageThrow("IMAGE_PARTICLES2");
                 IMAGE_SLOTMACHINE_OVERLAY = theManager.GetImageThrow("IMAGE_SLOTMACHINE_OVERLAY");
             }
             catch
@@ -1769,6 +1770,8 @@ namespace Sexy
         public static Image IMAGE_PLANTSZOMBIES;
 
         public static Image IMAGE_PARTICLES;
+
+        public static Image IMAGE_PARTICLES2;
 
         public static Image IMAGE_SLOTMACHINE_OVERLAY;
 

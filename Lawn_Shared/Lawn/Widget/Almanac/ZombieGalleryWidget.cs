@@ -66,8 +66,17 @@ namespace Lawn
                 y = Constants.Almanac_ImpPosition.Y;
                 return;
             }
-            x = (int)theZombieType % 3 * Constants.Almanac_ZombieSpace.X;
-            y = 5 + (int)theZombieType / 3 * Constants.Almanac_ZombieSpace.Y;
+            if (Constants.mHD)
+            {
+                x = (int)theZombieType % 5 * Constants.Almanac_ZombieSpace.X;
+                y = 5 + (int)theZombieType / 5 * Constants.Almanac_ZombieSpace.Y;
+            }
+            else
+            {
+                x = (int)theZombieType % 3 * Constants.Almanac_ZombieSpace.X;
+                y = 5 + (int)theZombieType / 3 * Constants.Almanac_ZombieSpace.Y;
+            }
+            
         }
 
         public bool ZombieIsShown(ZombieType theZombieType)

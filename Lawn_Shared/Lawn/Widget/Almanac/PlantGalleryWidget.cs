@@ -50,10 +50,18 @@ namespace Lawn
                 y = Constants.Almanac_ImitatorPosition.Y;
                 return;
             }
-            x = Constants.Almanac_SeedOffset.X + (int)theSeedType % 4 * (Constants.SMALL_SEEDPACKET_WIDTH + Constants.Almanac_SeedSpace.X);
-            y = Constants.Almanac_SeedOffset.X + (int)theSeedType / 4 * (Constants.SMALL_SEEDPACKET_HEIGHT + Constants.Almanac_SeedSpace.Y);
+            if (Constants.mHD)
+            {
+                x = Constants.Almanac_SeedOffset.X + (int)theSeedType % 9 * (Constants.SMALL_SEEDPACKET_WIDTH + Constants.Almanac_SeedSpace.X);
+                y = Constants.Almanac_SeedOffset.X + (int)theSeedType / 9 * (Constants.SMALL_SEEDPACKET_HEIGHT + Constants.Almanac_SeedSpace.Y);
+            }
+            else
+            {
+                x = Constants.Almanac_SeedOffset.X + (int)theSeedType % 4 * (Constants.SMALL_SEEDPACKET_WIDTH + Constants.Almanac_SeedSpace.X);
+                y = Constants.Almanac_SeedOffset.X + (int)theSeedType / 4 * (Constants.SMALL_SEEDPACKET_HEIGHT + Constants.Almanac_SeedSpace.Y);
+            }
+            
         }
-
         public override void Draw(Graphics g)
         {
             g.HardwareClip();

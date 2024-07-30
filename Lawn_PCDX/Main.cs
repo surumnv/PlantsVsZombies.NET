@@ -22,8 +22,8 @@ namespace Sexy
 			Main.SetLowMem();
 			Main.graphics.IsFullScreen = false;
 			Guide.SimulateTrialMode = false;
-			Main.graphics.PreferredBackBufferWidth = 800;
-			Main.graphics.PreferredBackBufferHeight = 480;
+			Main.graphics.PreferredBackBufferWidth = 2048;
+			Main.graphics.PreferredBackBufferHeight = 1536;
 			GraphicsState.mGraphicsDeviceManager.SupportedOrientations = Constants.SupportedOrientations;
 			GraphicsState.mGraphicsDeviceManager.DeviceCreated += new EventHandler<EventArgs>(graphics_DeviceCreated);
 			GraphicsState.mGraphicsDeviceManager.DeviceReset += new EventHandler<EventArgs>(graphics_DeviceReset);
@@ -141,8 +141,8 @@ namespace Sexy
             base.Initialize();
             // Window Scaling
             var f = new SharpDX.Direct2D1.Factory();
-            var ww = (int)(f.DesktopDpi.Width  / 96 * Constants.BackBufferSize.Y);
-            var wh = (int)(f.DesktopDpi.Height / 96 * Constants.BackBufferSize.X);
+            var ww = (int)(Constants.BackBufferSize.Y);
+            var wh = (int)(Constants.BackBufferSize.X);
             GlobalStaticVars.gSexyAppBase.mScreenScales.Init(ww, wh, Constants.BackBufferSize.Y, Constants.BackBufferSize.X);
             Main.graphics.PreferredBackBufferWidth = ww;
             Main.graphics.PreferredBackBufferHeight = wh;
@@ -456,10 +456,6 @@ namespace Sexy
             else if (Strings.Culture.TwoLetterISOLanguageName == "it")
             {
                 Constants.Language = Constants.LanguageIndex.it;
-            }
-            else if (Strings.Culture.TwoLetterISOLanguageName == "zh" && new RegionInfo(Strings.Culture.Name).TwoLetterISORegionName == "CN")
-            {
-                Constants.Language = Constants.LanguageIndex.zh_cn;
             }
             else
             {

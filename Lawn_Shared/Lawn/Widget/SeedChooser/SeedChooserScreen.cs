@@ -26,7 +26,7 @@ namespace Lawn
             mChooseState = SeedChooserState.Normal;
             mViewLawnTime = 0;
             mDoStartButton = false;
-            mSeedPacketsWidget = new SeedPacketsWidget(mApp, Has12Rows() ? 12 : 11, false, this);
+            mSeedPacketsWidget = new SeedPacketsWidget(mApp, (int)Math.Ceiling((double)(SeedType.SeedsInChooserCount - 1)/ GameConstants.SEEDCHOOSER_PLANTS_NUM_PERROW) , false, this);
             mScrollWidget = new ScrollWidget();
             mScrollWidget.Resize(Constants.SCROLL_AREA_OFFSET_X, Constants.SCROLL_AREA_OFFSET_Y, mSeedPacketsWidget.mWidth + (int)Constants.InvertAndScale(10f), (int)Constants.InvertAndScale(227f));
             mScrollWidget.AddWidget(mSeedPacketsWidget);
@@ -34,25 +34,44 @@ namespace Lawn
             mSeedPacketsWidget.Move(0, 0);
             AddWidget(mScrollWidget);
             mStartButton = new GameButton(100, this);
-            mStartButton.SetLabel("[PLAY_BUTTON]");
-            mStartButton.mButtonImage = AtlasResources.IMAGE_SEEDCHOOSER_SMALL_BUTTON;
-            mStartButton.mOverImage = null;
-            mStartButton.mDownImage = AtlasResources.IMAGE_SEEDCHOOSER_SMALL_BUTTON_PRESSED;
-            mStartButton.mDisabledImage = AtlasResources.IMAGE_SEEDCHOOSER_SMALL_BUTTON_DISABLED;
-            mStartButton.mOverOverlayImage = null;
-            mStartButton.SetFont(Resources.FONT_DWARVENTODCRAFT15);
-            mStartButton.mColors[1] = new SexyColor(255, 231, 26);
-            mStartButton.mColors[0] = new SexyColor(255, 231, 26);
-            mStartButton.Resize((int)Constants.InvertAndScale(147f), (int)Constants.InvertAndScale(280f), (int)Constants.InvertAndScale(67f), mStartButton.mButtonImage.GetHeight());
-            mStartButton.mTextOffsetX = 0;
-            mStartButton.mTextOffsetX = 0;
-            mStartButton.mTextPushOffsetX = 1;
-            mStartButton.mTextPushOffsetY = 3;
-            EnableStartButton(false);
-            mMenuButton = new GameButton(104, this);
-            mMenuButton.SetLabel("[MENU_BUTTON]");
-            mMenuButton.Resize(Constants.UIMenuButtonPosition.X + Constants.Board_Offset_AspectRatio_Correction, Constants.UIMenuButtonPosition.Y, Constants.UIMenuButtonWidth, AtlasResources.IMAGE_BUTTON_LEFT.mHeight);
-            mMenuButton.mDrawStoneButton = true;
+            if (!Constants.mHD)
+            {
+                mStartButton.mButtonImage = AtlasResources.IMAGE_SEEDCHOOSER_BUTTON;
+                mStartButton.mOverImage = null;
+                mStartButton.mDownImage = AtlasResources.IMAGE_SEEDCHOOSER_BUTTON;
+                mStartButton.mDisabledImage = AtlasResources.IMAGE_SEEDCHOOSER_BUTTON_DISABLED;
+                mStartButton.mOverOverlayImage = null;
+                mStartButton.Resize((int)Constants.InvertAndScale(147f), (int)Constants.InvertAndScale(280f), AtlasResources.IMAGE_SEEDCHOOSER_BUTTON.mWidth, AtlasResources.IMAGE_SEEDCHOOSER_BUTTON.mHeight);
+                EnableStartButton(false);
+                mMenuButton = new GameButton(104, this);
+                mMenuButton.mButtonImage = AtlasResources.IMAGE_BOARD_MENU_BUTTON;
+                mMenuButton.mOverImage = AtlasResources.IMAGE_BOARD_MENU_BUTTON_LIT;
+                mMenuButton.mDownImage = AtlasResources.IMAGE_BOARD_MENU_BUTTON_LIT;
+                mMenuButton.Resize(Constants.UIMenuButtonPosition.X + Constants.Board_Offset_AspectRatio_Correction, Constants.UIMenuButtonPosition.Y, AtlasResources.IMAGE_BOARD_MENU_BUTTON.mWidth, AtlasResources.IMAGE_BOARD_MENU_BUTTON.mHeight); 
+            }
+            else
+            {
+                mStartButton.SetLabel("[PLAY_BUTTON]");
+                mStartButton.mButtonImage = AtlasResources.IMAGE_SEEDCHOOSER_SMALL_BUTTON;
+                mStartButton.mOverImage = null;
+                mStartButton.mDownImage = AtlasResources.IMAGE_SEEDCHOOSER_SMALL_BUTTON_PRESSED;
+                mStartButton.mDisabledImage = AtlasResources.IMAGE_SEEDCHOOSER_SMALL_BUTTON_DISABLED;
+                mStartButton.mOverOverlayImage = null;
+                mStartButton.SetFont(Resources.FONT_DWARVENTODCRAFT15);
+                mStartButton.mColors[1] = new SexyColor(255, 231, 26);
+                mStartButton.mColors[0] = new SexyColor(255, 231, 26);
+                mStartButton.Resize((int)Constants.InvertAndScale(147f), (int)Constants.InvertAndScale(280f), (int)Constants.InvertAndScale(67f), mStartButton.mButtonImage.GetHeight());
+                mStartButton.mTextOffsetX = 0;
+                mStartButton.mTextOffsetX = 0;
+                mStartButton.mTextPushOffsetX = 1;
+                mStartButton.mTextPushOffsetY = 3;
+                EnableStartButton(false);
+                mMenuButton = new GameButton(104, this);
+                mMenuButton.SetLabel("[MENU_BUTTON]");
+                mMenuButton.Resize(Constants.UIMenuButtonPosition.X + Constants.Board_Offset_AspectRatio_Correction, Constants.UIMenuButtonPosition.Y, Constants.UIMenuButtonWidth, AtlasResources.IMAGE_BUTTON_LEFT.mHeight);
+                mMenuButton.mDrawStoneButton = true;
+            }
+            
             mRandomButton = new GameButton(101, this);
             mRandomButton.SetLabel("(Debug Play)");
             mRandomButton.mButtonImage = AtlasResources.IMAGE_BLANK;
@@ -160,8 +179,16 @@ namespace Lawn
             if (mApp.mGameMode == GameMode.ChallengeSeeingStars)
             {
                 ChosenSeed chosenSeed3 = mChosenSeeds[29];
-                chosenSeed3.mY = mBoard.GetSeedPacketPositionY(0);
-                chosenSeed3.mX = 0;
+                if (Constants.mHD)
+                {
+                    chosenSeed3.mY = 0;
+                    chosenSeed3.mX = mBoard.GetSeedPacketPositionX(0);
+                }
+                else
+                {
+                    chosenSeed3.mY = mBoard.GetSeedPacketPositionY(0);
+                    chosenSeed3.mX = 0;
+                }
                 chosenSeed3.mEndX = chosenSeed3.mX;
                 chosenSeed3.mEndY = chosenSeed3.mY;
                 chosenSeed3.mStartX = chosenSeed3.mX;
@@ -535,7 +562,7 @@ namespace Lawn
 
         public void GetSeedPositionInChooser(int theIndex, ref int x, ref int y)
         {
-            if (theIndex == 48)
+            if (theIndex == (int)SeedType.Imitater)
             {
                 x = mImitaterButton.mX;
                 y = mImitaterButton.mY;
@@ -548,8 +575,16 @@ namespace Lawn
 
         public void GetSeedPositionInBank(int theIndex, ref int x, ref int y)
         {
-            y = mBoard.mSeedBank.mY + mBoard.GetSeedPacketPositionY(theIndex) - mY;
-            x = mBoard.mSeedBank.mX;
+            if (Constants.mHD)
+            {
+                y = mBoard.mSeedBank.mY;
+                x = mBoard.mSeedBank.mX + mBoard.GetSeedPacketPositionX(theIndex) - mX;
+            }
+            else
+            {
+                y = mBoard.mSeedBank.mY + mBoard.GetSeedPacketPositionY(theIndex) - mY;
+                x = mBoard.mSeedBank.mX;
+            }
         }
 
         public void ClickedSeedInChooser(ref ChosenSeed theChosenSeed)
@@ -994,8 +1029,16 @@ namespace Lawn
                 SeedType seedType2 = (SeedType)PickFromWeightedArrayUsingSpecialRandSeed(SeedChooserScreen.aSeedArray, (int)SeedType.SeedsInChooserCount);
                 SeedChooserScreen.aSeedArray[(int)seedType2].mWeight = 0;
                 ChosenSeed chosenSeed = mChosenSeeds[(int)seedType2];
-                chosenSeed.mY = mBoard.GetSeedPacketPositionY(k);
-                chosenSeed.mX = 0;
+                if (Constants.mHD)
+                {
+                    chosenSeed.mY = 0;
+                    chosenSeed.mX = mBoard.GetSeedPacketPositionX(k);
+                }
+                else
+                {
+                    chosenSeed.mY = mBoard.GetSeedPacketPositionY(k);
+                    chosenSeed.mX = 0;
+                }
                 chosenSeed.mEndX = chosenSeed.mX;
                 chosenSeed.mEndY = chosenSeed.mY;
                 chosenSeed.mStartX = chosenSeed.mX;

@@ -989,6 +989,8 @@ namespace Lawn
 
         public const float STINKY_COIN_OFFSET_Y = 30f;//?
 
+        public const int SEEDCHOOSER_PLANTS_NUM_PERROW = 8;//选卡界面每行植物数
+
         public static Achievement[] AchievementInfo;
 
         internal static int[,] gLawnDialogColors;

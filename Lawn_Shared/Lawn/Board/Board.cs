@@ -402,13 +402,27 @@ namespace Lawn
             mClip = false;
             mDebugTextMode = DebugTextMode.None;
             mMenuButton = new GameButton(0, this);
-            mMenuButton.mDrawStoneButton = true;
+            if (Constants.mHD)
+            {
+                mMenuButton.mButtonImage = AtlasResources.IMAGE_BOARD_MENU_BUTTON;
+                mMenuButton.mOverImage = AtlasResources.IMAGE_BOARD_MENU_BUTTON_LIT;
+                mMenuButton.mDownImage = AtlasResources.IMAGE_BOARD_MENU_BUTTON_LIT;
+                mMenuButton.mParentWidget = this;
+                mMenuButton.Resize(Constants.UIMenuButtonPosition.X, Constants.UIMenuButtonPosition.Y, AtlasResources.IMAGE_BOARD_MENU_BUTTON.mWidth, AtlasResources.IMAGE_BOARD_MENU_BUTTON.mHeight);
+            }
+            else
+            {
+                mMenuButton.mDrawStoneButton = true;
+            }
             mStoreButton = null;
             mIgnoreMouseUp = false;
             if (mApp.mGameMode == GameMode.ChallengeZenGarden || mApp.mGameMode == GameMode.TreeOfWisdom)
             {
-                mMenuButton.SetLabel("[MAIN_MENU_BUTTON]");
-                mMenuButton.Resize(Constants.UIMenuButtonPosition.X, Constants.UIMenuButtonPosition.Y, Constants.UIMenuButtonWidth, AtlasResources.IMAGE_BUTTON_LEFT.mHeight);
+                if (!Constants.mHD)
+                {
+                    mMenuButton.SetLabel("[MAIN_MENU_BUTTON]");
+                    mMenuButton.Resize(Constants.UIMenuButtonPosition.X, Constants.UIMenuButtonPosition.Y, Constants.UIMenuButtonWidth, AtlasResources.IMAGE_BUTTON_LEFT.mHeight);
+                }
                 mStoreButton = new GameButton(1, this);
                 mStoreButton.mButtonImage = AtlasResources.IMAGE_ZENSHOPBUTTON;
                 mStoreButton.mOverImage = AtlasResources.IMAGE_ZENSHOPBUTTON_HIGHLIGHT;
@@ -416,7 +430,7 @@ namespace Lawn
                 mStoreButton.mParentWidget = this;
                 mStoreButton.Resize(Constants.ZenGardenStoreButtonX, Constants.ZenGardenStoreButtonY, AtlasResources.IMAGE_ZENSHOPBUTTON.mWidth, AtlasResources.IMAGE_ZENSHOPBUTTON.mHeight);
             }
-            else
+            else if(!Constants.mHD)
             {
                 mMenuButton.SetLabel("[MENU_BUTTON]");
                 mMenuButton.Resize(Constants.UIMenuButtonPosition.X, Constants.UIMenuButtonPosition.Y, Constants.UIMenuButtonWidth, AtlasResources.IMAGE_BUTTON_LEFT.mHeight);
@@ -1060,8 +1074,17 @@ namespace Lawn
             {
                 SeedPacket seedPacket = mSeedBank.mSeedPackets[l];
                 seedPacket.mIndex = l;
-                seedPacket.mY = GetSeedPacketPositionY(l);
-                seedPacket.mX = 0;
+                if (Constants.mHD)
+                {
+                    seedPacket.mY = 30;
+                    seedPacket.mX = GetSeedPacketPositionX(l);
+                }
+                else
+                {
+                    seedPacket.mY = GetSeedPacketPositionY(l);
+                    seedPacket.mX = 0;
+                }
+                
                 seedPacket.mPacketType = SeedType.None;
             }
             if (mApp.IsSlotMachineLevel())
@@ -4641,6 +4664,21 @@ namespace Lawn
             return theIndex * num;
         }
 
+        public int GetSeedPacketPositionX(int theIndex)
+        {
+            int aNumPackets = mSeedBank.mNumPackets;
+            int num = Constants.SMALL_SEEDPACKET_WIDTH;
+            if (aNumPackets <= 7)
+            {
+                num += (int)Constants.InvertAndScale(10f);
+            }
+            else if (aNumPackets == 8)
+            {
+                num += (int)Constants.InvertAndScale(10f);
+            }
+            return theIndex * num;
+        }
+
         public void AddGraveStones(int theGridX, int theCount)
         {
             if (!doAddGraveStones)
@@ -6708,7 +6746,15 @@ namespace Lawn
             for (int i = 0; i < GameConstants.SEEDBANK_MAX; i++)
             {
                 SeedPacket seedPacket = mSeedBank.mSeedPackets[i];
-                seedPacket.mY = GetSeedPacketPositionY(i);
+                if (Constants.mHD)
+                {
+                    seedPacket.mX = GetSeedPacketPositionX(i);
+                    seedPacket.mY = 30;
+                }
+                else
+                {
+                    seedPacket.mY = GetSeedPacketPositionY(i);
+                }
                 seedPacket.mPacketType = SeedType.None;
             }
             if (StageHasFog())

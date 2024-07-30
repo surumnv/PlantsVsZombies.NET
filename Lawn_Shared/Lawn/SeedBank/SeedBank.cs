@@ -8,8 +8,16 @@ namespace Lawn
     {
         public SeedBank()
         {
-            mWidth = Constants.New.SeedBank_Width;
-            mHeight = mApp.mHeight;
+            if (Constants.mHD)
+            {
+                mWidth = mApp.mWidth;
+                mHeight = 180;
+            }
+            else
+            {
+                mWidth = mApp.mWidth;
+                mHeight = 180;
+            }
             mNumPackets = 0;
             mCutSceneDarken = 255;
             mConveyorBeltCounter = 0;
@@ -160,34 +168,50 @@ namespace Lawn
         public bool MouseHitTest(int x, int y, out HitResult theHitResult)
         {
             theHitResult = default(HitResult);
-            if (x > mWidth * Constants.S - 50f)
+            if (Constants.mHD)
             {
-                return false;
-            }
-            SeedPacket seedPacket = null;
-            int num = Constants.SMALL_SEEDPACKET_HEIGHT * 2;
-            for (int i = 0; i < mNumPackets; i++)
-            {
-                SeedPacket seedPacket2 = mSeedPackets[i];
-                if (seedPacket2.mPacketType != SeedType.None)
+                if (x - mX <= mWidth - 5 && mNumPackets > 0)
                 {
-                    int num2 = seedPacket2.CenterY();
-                    if (num2 <= mHeight)
+                    foreach (SeedPacket aSeedPacket in mSeedPackets)
                     {
-                        int num3 = Math.Abs(num2 - y);
-                        if (num3 < num)
+                        if (aSeedPacket.MouseHitTest(x - mX, y - mY, out theHitResult))
                         {
-                            num = num3;
-                            seedPacket = seedPacket2;
+                            return true;
                         }
                     }
                 }
             }
-            if (seedPacket != null)
+            else
             {
-                theHitResult.mObject = seedPacket;
-                theHitResult.mObjectType = GameObjectType.Seedpacket;
-                return true;
+                if (x > mWidth * Constants.S - 50f)
+                {
+                    return false;
+                }
+                SeedPacket seedPacket = null;
+                int num = Constants.SMALL_SEEDPACKET_HEIGHT * 2;
+                for (int i = 0; i < mNumPackets; i++)
+                {
+                    SeedPacket seedPacket2 = mSeedPackets[i];
+                    if (seedPacket2.mPacketType != SeedType.None)
+                    {
+                        int num2 = seedPacket2.CenterY();
+                        if (num2 <= mHeight)
+                        {
+                            int num3 = Math.Abs(num2 - y);
+                            if (num3 < num)
+                            {
+                                num = num3;
+                                seedPacket = seedPacket2;
+                            }
+                        }
+                    }
+                }
+                if (seedPacket != null)
+                {
+                    theHitResult.mObject = seedPacket;
+                    theHitResult.mObjectType = GameObjectType.Seedpacket;
+                    return true;
+                }
             }
             theHitResult.mObject = null;
             theHitResult.mObjectType = GameObjectType.None;
@@ -306,12 +330,26 @@ namespace Lawn
         public void UpdateHeight()
         {
             mNumPackets = mBoard.GetNumSeedsInBank();
-            mHeight = mApp.mHeight;
-            for (int i = 0; i < mNumPackets; i++)
+            if (Constants.mHD)
             {
-                SeedPacket seedPacket = mSeedPackets[i];
-                seedPacket.mY = mBoard.GetSeedPacketPositionY(i);
+                mWidth = mApp.mWidth;
+                for (int i = 0; i < mNumPackets; i++)
+                {
+                    SeedPacket seedPacket = mSeedPackets[i];
+                    seedPacket.mX = mBoard.GetSeedPacketPositionX(i);
+                }
             }
+            else
+            {
+                mHeight = mApp.mHeight;
+                for (int i = 0; i < mNumPackets; i++)
+                {
+                    SeedPacket seedPacket = mSeedPackets[i];
+                    seedPacket.mY = mBoard.GetSeedPacketPositionY(i);
+                }
+            }
+            
+            
         }
 
         public void RefreshAllPackets()

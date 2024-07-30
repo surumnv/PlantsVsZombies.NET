@@ -11,14 +11,14 @@ namespace Lawn
             mListener = theListener;
             mImitaters = theIsImitaters;
             mRows = theNumberOfRows;
-            mWidth = 4 * Constants.SMALL_SEEDPACKET_WIDTH + 3 * Constants.SEED_PACKET_HORIZ_GAP;
+            mWidth = GameConstants.SEEDCHOOSER_PLANTS_NUM_PERROW * Constants.SMALL_SEEDPACKET_WIDTH + (GameConstants.SEEDCHOOSER_PLANTS_NUM_PERROW - 1) * Constants.SEED_PACKET_HORIZ_GAP;
             mHeight = Constants.SMALL_SEEDPACKET_HEIGHT * mRows + (mRows - 1) * Constants.SEED_PACKET_VERT_GAP;
         }
 
         public void GetSeedPosition(SeedType theSeedType, ref int theX, ref int theY)
         {
-            theX = (int)theSeedType % 4 * (Constants.SMALL_SEEDPACKET_WIDTH + Constants.SEED_PACKET_HORIZ_GAP);
-            theY = (int)theSeedType / 4 * (Constants.SMALL_SEEDPACKET_HEIGHT + Constants.SEED_PACKET_VERT_GAP);
+            theX = (int)theSeedType % GameConstants.SEEDCHOOSER_PLANTS_NUM_PERROW * (Constants.SMALL_SEEDPACKET_WIDTH + Constants.SEED_PACKET_HORIZ_GAP);
+            theY = (int)theSeedType / GameConstants.SEEDCHOOSER_PLANTS_NUM_PERROW * (Constants.SMALL_SEEDPACKET_HEIGHT + Constants.SEED_PACKET_VERT_GAP);
         }
 
         public override void Dispose()
@@ -36,16 +36,16 @@ namespace Lawn
                 y = 0;
             }
             int num = x / (Constants.SMALL_SEEDPACKET_WIDTH + Constants.SEED_PACKET_HORIZ_GAP);
-            if (num > 3)
+            if (num > (GameConstants.SEEDCHOOSER_PLANTS_NUM_PERROW - 1))
             {
-                num = 3;
+                num = GameConstants.SEEDCHOOSER_PLANTS_NUM_PERROW;
             }
             if (num < 0)
             {
                 num = 0;
             }
             int num2 = y / (Constants.SMALL_SEEDPACKET_HEIGHT + Constants.SEED_PACKET_VERT_GAP);
-            SeedType unnamedParameter = (SeedType)(num2 * 4 + num);
+            SeedType unnamedParameter = (SeedType)(num2 * GameConstants.SEEDCHOOSER_PLANTS_NUM_PERROW + num);
             mListener.SeedSelected(unnamedParameter);
         }
 

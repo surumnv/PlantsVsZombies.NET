@@ -581,7 +581,7 @@ namespace Lawn
             Deactivate();
         }
 
-        public bool MouseHitTest(int theX, int theY, HitResult theHitResult)
+        public bool MouseHitTest(int theX, int theY, out HitResult theHitResult)
         {
             if (mSlotMachineCountDown > 0 || mPacketType == SeedType.None)
             {
