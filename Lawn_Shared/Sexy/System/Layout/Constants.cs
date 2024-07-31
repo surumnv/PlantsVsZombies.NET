@@ -597,9 +597,10 @@ namespace Sexy
             Constants.GRIDSIZEX = 9;
             Constants.MAX_GRIDSIZEY = 6;
             Constants.MORE_GAMES_ORIGIN_X = 125;
-            Constants.MAIN_MENU_ORIGIN_X = 320;
-            Constants.ACHIEVEMENTS_ORIGIN_X = 800 * i;
-            Constants.QUICKPLAY_ORIGIN_X = 1800 * i;
+            Constants.MAIN_MENU_ORIGIN_X = 2048;//主界面的位置
+            Constants.ACHIEVEMENTS_ORIGIN_X = 2048;//成就界面的位置
+            Constants.QUICKPLAY_ORIGIN_X = 6144;
+            Constants.MOREWAY_ORIGIN_X = 4096;
             Constants.MORE_GAMES_PLANK_HEIGHT = 125*i;
             Constants.MORE_GAMES_PLANK_WIDTH = 400 * i;
             Constants.MORE_GAMES_ITEM_GAP = 3 * i;
@@ -617,7 +618,7 @@ namespace Sexy
             Constants.SEED_PACKET_VERT_GAP = (int)Constants.InvertAndScale(1f);
             Constants.SeedPacket_Selector_Pos = new Point(-6 * i, 3 * i);
             Constants.TitleScreen_ReanimStart_X = 130;
-            Constants.GameSelector_Width = 2935 * i;
+            Constants.GameSelector_Width = 8192;
             Constants.GameSelector_Height = 1536;
             Constants.GameSelector_AdventureButton_X = 986;//主界面冒险模式按钮
             Constants.GameSelector_AdventureButton_Y = 213;//主界面冒险模式按钮
@@ -637,14 +638,22 @@ namespace Sexy
             Constants.GameSelector_AchievementsButton_Y = 536 * i;
             Constants.GameSelector_AchievementsStatue_X = 265 * i;
             Constants.GameSelector_AchievementsStatue_Y = 315 * i;
-            Constants.GameSelector_MoreWaysToPlay_MiniGames_X = 295 * i;
-            Constants.GameSelector_MoreWaysToPlay_MiniGames_Y = (int)Constants.InvertAndScale(160f);
-            Constants.GameSelector_MoreWaysToPlay_VaseBreaker_X = 656 * i;
-            Constants.GameSelector_MoreWaysToPlay_VaseBreaker_Y = (int)Constants.InvertAndScale(175f);
-            Constants.GameSelector_MoreWaysToPlay_IZombie_X = 438 * i;
-            Constants.GameSelector_MoreWaysToPlay_IZombie_Y = (int)Constants.InvertAndScale(195f);
-            Constants.GameSelector_MoreWaysToPlay_Back_X = 413 * i;
-            Constants.GameSelector_MoreWaysToPlay_Back_Y = (int)Constants.InvertAndScale(270f);
+            Constants.GameSelector_MoreWaysToPlay_MiniGames_X = 618;//迷你游戏按钮，待调整
+            Constants.GameSelector_MoreWaysToPlay_MiniGames_Y = 590;//迷你游戏按钮，待调整
+            Constants.GameSelector_MoreWaysToPlay_Survival_X = 563;//生存模式按钮，待调整，待调整
+            Constants.GameSelector_MoreWaysToPlay_Survival_Y = 1056;//生存模式按钮，待调整
+            Constants.GameSelector_MoreWaysToPlay_Quickplay_X = 1452;//快速游戏按钮
+            Constants.GameSelector_MoreWaysToPlay_Quickplay_Y = 982;//快速游戏按钮
+            Constants.GameSelector_MoreWaysToPlay_Puzzle_X = 148;//益智按钮，待调整
+            Constants.GameSelector_MoreWaysToPlay_Puzzle_Y = 738;//益智按钮，待调整
+            Constants.GameSelector_MoreWaysToPlay_VaseBreaker_X = 1248;//花盆终结者按钮，待调整
+            Constants.GameSelector_MoreWaysToPlay_VaseBreaker_Y = 983;//花盆终结者按钮，待调整
+            Constants.GameSelector_MoreWaysToPlay_IZombie_X = 567;//僵尸公敌按钮
+            Constants.GameSelector_MoreWaysToPlay_IZombie_Y = 796;//僵尸公敌按钮
+            Constants.GameSelector_MoreWaysToPlay_Back_X = 1269;//更多游戏界面的返回按钮
+            Constants.GameSelector_MoreWaysToPlay_Back_Y = 1334;//更多游戏界面的返回按钮
+            Constants.GameSelector_Quickplay_Back_X = 796;//快速游戏界面的返回按钮
+            Constants.GameSelector_Quickplay_Back_Y = 1285;//快速游戏界面的返回按钮
             Constants.GameSelector_PlayerName_Pos = new Point(209 * i, -238 * i);
             Constants.GameSelector_LevelNumber_1_Pos = new Point(691 * i, 40 * i);
             Constants.GameSelector_LevelNumber_2_Pos = new Point(725 * i, 41 * i);
@@ -1732,6 +1741,8 @@ namespace Sexy
 
         public static int QUICKPLAY_ORIGIN_X;
 
+        public static int MOREWAY_ORIGIN_X;
+
         public static int MORE_GAMES_PLANK_HEIGHT;
 
         public static int MORE_GAMES_PLANK_WIDTH;
@@ -1832,9 +1843,25 @@ namespace Sexy
 
         public static int GameSelector_MoreWaysToPlay_IZombie_Y;
 
+        public static int GameSelector_MoreWaysToPlay_Puzzle_X;
+
+        public static int GameSelector_MoreWaysToPlay_Puzzle_Y;
+
+        public static int GameSelector_MoreWaysToPlay_Survival_X;
+
+        public static int GameSelector_MoreWaysToPlay_Survival_Y;
+
+        public static int GameSelector_MoreWaysToPlay_Quickplay_X;
+
+        public static int GameSelector_MoreWaysToPlay_Quickplay_Y;
+
         public static int GameSelector_MoreWaysToPlay_Back_X;
 
         public static int GameSelector_MoreWaysToPlay_Back_Y;
+
+        public static int GameSelector_Quickplay_Back_X;
+
+        public static int GameSelector_Quickplay_Back_Y;
 
         public static int GameSelector_LeaderboardButton_X;
 

@@ -74,6 +74,7 @@ namespace Lawn
                 Resources.IMAGE_SELECTORSCREEN_MAIN_BACKGROUND,
                 Resources.IMAGE_SELECTORSCREEN_ACHIEVEMENTS_HOLE,
                 Resources.IMAGE_SELECTORSCREEN_ACHIEVEMENTS_HOLE_CHINA,
+                Resources.IMAGE_SELECTORSCREEN_MOREWAY_BACKGROUND,
                 Resources.IMAGE_SELECTORSCREEN_QUICKPLAY_BACKGROUND,
                 Resources.IMAGE_REANIM_ZOMBIESWON,
                 Resources.IMAGE_SCARY_POT

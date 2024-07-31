@@ -105,7 +105,7 @@ namespace Lawn
             Image theImage = null;
             if (theLevel == 5)
             {
-                theImage = AtlasResources.IMAGE_QUICKPLAY_BOWLING;
+                //theImage = AtlasResources.IMAGE_QUICKPLAY_BOWLING;
             }
             else if (theLevel <= 1 * GameConstants.LEVELS_PER_AREA)
             {
@@ -113,7 +113,7 @@ namespace Lawn
             }
             else if (theLevel == 1 * GameConstants.LEVELS_PER_AREA + 5)
             {
-                theImage = AtlasResources.IMAGE_QUICKPLAY_WACK;
+                //theImage = AtlasResources.IMAGE_QUICKPLAY_WACK;
             }
             else if (theLevel <= 2 * GameConstants.LEVELS_PER_AREA)
             {
@@ -121,7 +121,7 @@ namespace Lawn
             }
             else if (theLevel == 2 * GameConstants.LEVELS_PER_AREA + 5)
             {
-                theImage = AtlasResources.IMAGE_QUICKPLAY_LITTLE_TROUBLE;
+                //theImage = AtlasResources.IMAGE_QUICKPLAY_LITTLE_TROUBLE;
             }
             else if (theLevel <= 3 * GameConstants.LEVELS_PER_AREA)
             {
@@ -129,7 +129,7 @@ namespace Lawn
             }
             else if (theLevel == 3 * GameConstants.LEVELS_PER_AREA + 5)
             {
-                theImage = AtlasResources.IMAGE_QUICKPLAY_VASES;
+                //theImage = AtlasResources.IMAGE_QUICKPLAY_VASES;
             }
             else if (theLevel <= 4 * GameConstants.LEVELS_PER_AREA)
             {
@@ -141,7 +141,7 @@ namespace Lawn
             }
             else if (theLevel == GameConstants.FINAL_LEVEL)
             {
-                theImage = AtlasResources.IMAGE_QUICKPLAY_ZOMBOSS;
+                //theImage = AtlasResources.IMAGE_QUICKPLAY_ZOMBOSS;
             }
             g.DrawImage(theImage, theX, theY);
         }

@@ -6,6 +6,13 @@ namespace Lawn
     {
         Games,
         IZombie,
-        Vasebreaker
+        Vasebreaker,
+        Survival,
+        QuickplayDay,
+        QuickplayNight,
+        QuickplayPool,
+        QuickplayFog,
+        QuickplayRoof,
+        QuickplayBonus,
     }
 }

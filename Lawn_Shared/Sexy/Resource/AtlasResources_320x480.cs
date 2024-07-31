@@ -4268,11 +4268,6 @@ namespace Sexy
             new UNPACK_INFO(AtlasResources.IMAGE_QUICKPLAY_BACKGROUND3_THUMB, 351, 1, 175, 128, 1, 1, AnimType.AnimType_None, 0, 0, 0),
             new UNPACK_INFO(AtlasResources.IMAGE_QUICKPLAY_BACKGROUND4_THUMB, 526, 1, 175, 128, 1, 1, AnimType.AnimType_None, 0, 0, 0),
             new UNPACK_INFO(AtlasResources.IMAGE_QUICKPLAY_BACKGROUND5_THUMB, 701, 1, 175, 128, 1, 1, AnimType.AnimType_None, 0, 0, 0),
-            new UNPACK_INFO(AtlasResources.IMAGE_QUICKPLAY_LITTLE_TROUBLE, 1, 129, 175, 128, 1, 1, AnimType.AnimType_None, 0, 0, 0),
-            new UNPACK_INFO(AtlasResources.IMAGE_QUICKPLAY_BOWLING, 176, 129, 175, 128, 1, 1, AnimType.AnimType_None, 0, 0, 0),
-            new UNPACK_INFO(AtlasResources.IMAGE_QUICKPLAY_VASES, 351, 129, 175, 128, 1, 1, AnimType.AnimType_None, 0, 0, 0),
-            new UNPACK_INFO(AtlasResources.IMAGE_QUICKPLAY_WACK, 526, 129, 175, 128, 1, 1, AnimType.AnimType_None, 0, 0, 0),
-            new UNPACK_INFO(AtlasResources.IMAGE_QUICKPLAY_ZOMBOSS, 701, 129, 175, 128, 1, 1, AnimType.AnimType_None, 0, 0, 0)
             };
             for (int i = 0; i < array.Length; i++)
             {
@@ -4290,16 +4285,6 @@ namespace Sexy
             AtlasResources.IMAGE_QUICKPLAY_BACKGROUND4_THUMB = array[num].mpImage;
             num++;
             AtlasResources.IMAGE_QUICKPLAY_BACKGROUND5_THUMB = array[num].mpImage;
-            num++;
-            AtlasResources.IMAGE_QUICKPLAY_LITTLE_TROUBLE = array[num].mpImage;
-            num++;
-            AtlasResources.IMAGE_QUICKPLAY_BOWLING = array[num].mpImage;
-            num++;
-            AtlasResources.IMAGE_QUICKPLAY_VASES = array[num].mpImage;
-            num++;
-            AtlasResources.IMAGE_QUICKPLAY_WACK = array[num].mpImage;
-            num++;
-            AtlasResources.IMAGE_QUICKPLAY_ZOMBOSS = array[num].mpImage;
             num++;
         }
 

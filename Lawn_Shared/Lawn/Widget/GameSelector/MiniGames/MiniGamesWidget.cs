@@ -48,6 +48,9 @@ namespace Lawn
                     return mApp.mPlayerInfo.mVasebreakerUnlocked;
                 }
                 return (int)GameMode.ScaryPotterCount;
+            case MiniGameMode.Survival:
+                //TODO
+                return (int)GameMode.SurvivalCount;
             default:
                 return -1;
             }
@@ -79,6 +82,9 @@ namespace Lawn
                     return true;
                 }
                 break;
+            case MiniGameMode.Survival:
+                return false;
+                //TODO
             }
             return false;
         }
@@ -174,6 +180,8 @@ namespace Lawn
                 }
                 mApp.LawnMessageBox(49, "[MODE_LOCKED]", "[ONE_MORE_SCARY_POTTER_TOOLTIP]", "[DIALOG_BUTTON_OK]", "", 3, null);
                 return;
+            case MiniGameMode.Survival:
+                //TODO
             default:
                 return;
             }
@@ -202,6 +210,8 @@ namespace Lawn
                 return GetGameModeIZombie(index);
             case MiniGameMode.Vasebreaker:
                 return GetGameModeVasebreaker(index);
+            case MiniGameMode.Survival:
+                return GetGameModeSurvival(index);
             default:
                 return -1;
             }
@@ -212,7 +222,9 @@ namespace Lawn
             switch (mMode)
             {
             case MiniGameMode.Games:
-                return TodStringFile.TodStringTranslate(ChallengeScreen.gChallengeDefs[index + 14].mChallengeName);
+                return TodStringFile.TodStringTranslate(ChallengeScreen.gChallengeDefs[index + (int)GameMode.MiniGameStart - 2].mChallengeName);
+            case MiniGameMode.Survival:
+                return TodStringFile.TodStringTranslate(ChallengeScreen.gChallengeDefs[index + (int)GameMode.SurvivalStart - 2].mChallengeName);
             case MiniGameMode.IZombie:
                 if (index == 10)
                 {
@@ -240,9 +252,16 @@ namespace Lawn
                 return GetImageForIZombie(index);
             case MiniGameMode.Vasebreaker:
                 return GetImageForVasebreaker(index);
+            case MiniGameMode.Survival:
+                return GetImageForSurvival(index);
             default:
                 return null;
             }
+        }
+
+        public int GetGameModeSurvival(int index)
+        {
+            return index - 1 + (int)GameMode.SurvivalStart;
         }
 
         public int GetGameModeVasebreaker(int index)
@@ -388,6 +407,26 @@ namespace Lawn
             return AtlasResources.IMAGE_MINIGAMES_VASEBREAKER;
         }
 
+        public Image GetImageForSurvival(int index)
+        {
+            int theIndex = index % 5;
+            switch (theIndex)
+            {
+            case 1:
+                return AtlasResources.IMAGE_QUICKPLAY_BACKGROUND1_THUMB;
+            case 2:
+                return AtlasResources.IMAGE_QUICKPLAY_BACKGROUND2_THUMB;
+            case 3:
+                return AtlasResources.IMAGE_QUICKPLAY_BACKGROUND3_THUMB;
+            case 4:
+                return AtlasResources.IMAGE_QUICKPLAY_BACKGROUND4_THUMB;
+            case 0:
+                return AtlasResources.IMAGE_QUICKPLAY_BACKGROUND5_THUMB;
+            default:
+                return null;
+            }
+        }
+
         public void RecoverLastPlayedMode() 
         {
             GameMode aGameMode = mApp.mGameMode;
@@ -404,6 +443,10 @@ namespace Lawn
             case MiniGameMode.Vasebreaker:
                 if (mApp.IsScaryPotterLevel())
                     index = (int)aGameMode + 1 - (int)GameMode.ScaryPotterStart;
+                break;
+            case MiniGameMode.Survival:
+                if (mApp.IsSurvivalMode())
+                    index = (int)aGameMode + 1 - (int)GameMode.SurvivalStart;
                 break;
             }
             if (index >= 0) {

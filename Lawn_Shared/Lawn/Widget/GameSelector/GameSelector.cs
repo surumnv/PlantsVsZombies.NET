@@ -19,7 +19,7 @@ namespace Lawn
             mAdventureButton.Resize(Constants.MAIN_MENU_ORIGIN_X + Constants.GameSelector_AdventureButton_X, Constants.GameSelector_AdventureButton_Y, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_ADVENTURE_BUTTON.mWidth, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_ADVENTURE_BUTTON.mHeight);
             mAdventureButton.mClip = false;
             mFadeInCounter = 0;
-            mMoreWaysToPlayButton = GameButton.MakeNewButton((int)GameSelectorButtons.Quickplay, this, "", null, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MOREWAYS, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MOREWAYS_HIGHLIGHT, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MOREWAYS_HIGHLIGHT);
+            mMoreWaysToPlayButton = GameButton.MakeNewButton((int)GameSelectorButtons.MoreWays, this, "", null, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MOREWAYS, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MOREWAYS_HIGHLIGHT, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MOREWAYS_HIGHLIGHT);
             mMoreWaysToPlayButton.Resize(Constants.MAIN_MENU_ORIGIN_X + Constants.GameSelector_MiniGameButton_X, Constants.GameSelector_MiniGameButton_Y, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MOREWAYS.mWidth, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MOREWAYS.mHeight);
             mMoreWaysToPlayButton.mClip = false;
             mLeaderboardButton = GameButton.MakeNewButton((int)GameSelectorButtons.Leaderboards, this, "", null, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_LEADERBOARD, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_LEADERBOARD_HIGHLIGHT, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_LEADERBOARD_HIGHLIGHT);
@@ -48,18 +48,35 @@ namespace Lawn
             mMoreGamesBackButton.mTranslateY = 0;
             mAchievementsButton = GameButton.MakeNewButton((int)GameSelectorButtons.Achievements, this, "", null, AtlasResources.IMAGE_BLANK, AtlasResources.IMAGE_BLANK, AtlasResources.IMAGE_BLANK);
             mAchievementsButton.Resize(Constants.MAIN_MENU_ORIGIN_X + Constants.GameSelector_AchievementsStatue_X, Constants.GameSelector_AchievementsStatue_Y, Resources.IMAGE_ACHIEVEMENT_GNOME.mWidth, Resources.IMAGE_ACHIEVEMENT_GNOME.mHeight);
+            
             mMiniGamesButton = GameButton.MakeNewButton((int)GameSelectorButtons.MiniGames, this, "", null, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MINIGAMES, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MINIGAMES_HIGHLIGHT, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MINIGAMES_HIGHLIGHT);
+            mMiniGamesButton.Resize(Constants.MOREWAY_ORIGIN_X + Constants.GameSelector_MoreWaysToPlay_MiniGames_X, Constants.GameSelector_MoreWaysToPlay_MiniGames_Y, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MINIGAMES.mWidth + 2, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MINIGAMES.mHeight + 2);
+
             mVaseBreakerButton = GameButton.MakeNewButton((int)GameSelectorButtons.Vasebreaker, this, "", null, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_VASEBREAKER, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_VASEBREAKER_HIGHLIGHT, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_VASEBREAKER_HIGHLIGHT);
-            mIZombieButton = GameButton.MakeNewButton((int)GameSelectorButtons.IZombie, this, "", null, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_IZOMBIE, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_IZOMBIE_HIGHLIGHT, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_IZOMBIE_HIGHLIGHT);
-            mMoreWaysBackButton = GameButton.MakeNewButton((int)GameSelectorButtons.QuickplayBack, this, "", null, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MOREWAYS_BACK, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MOREWAYS_BACK_HIGHLIGHT, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MOREWAYS_BACK_HIGHLIGHT);
-            mMiniGamesButton.Resize(Constants.QUICKPLAY_ORIGIN_X + Constants.GameSelector_MoreWaysToPlay_MiniGames_X, Constants.GameSelector_MoreWaysToPlay_MiniGames_Y, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MINIGAMES.mWidth + 2, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MINIGAMES.mHeight + 2);
             mVaseBreakerButton.Resize(Constants.QUICKPLAY_ORIGIN_X + Constants.GameSelector_MoreWaysToPlay_VaseBreaker_X, Constants.GameSelector_MoreWaysToPlay_VaseBreaker_Y, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_VASEBREAKER.mWidth + 2, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_VASEBREAKER.mHeight + 2);
+
+            mIZombieButton = GameButton.MakeNewButton((int)GameSelectorButtons.IZombie, this, "", null, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_IZOMBIE, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_IZOMBIE_HIGHLIGHT, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_IZOMBIE_HIGHLIGHT);
             mIZombieButton.Resize(Constants.QUICKPLAY_ORIGIN_X + Constants.GameSelector_MoreWaysToPlay_IZombie_X, Constants.GameSelector_MoreWaysToPlay_IZombie_Y, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_IZOMBIE.mWidth + 2, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_IZOMBIE.mHeight + 2);
-            mMoreWaysBackButton.Resize(Constants.QUICKPLAY_ORIGIN_X + Constants.GameSelector_MoreWaysToPlay_Back_X, Constants.GameSelector_MoreWaysToPlay_Back_Y, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MOREWAYS_BACK.mWidth + 2, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MOREWAYS_BACK.mHeight + 2);
+
+            mQuickplayBackButton = GameButton.MakeNewButton((int)GameSelectorButtons.QuickplayBack, this, "", null, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_QUICKPLAY_BACK, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_QUICKPLAY_BACK_HIGHLIGHT, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_QUICKPLAY_BACK_HIGHLIGHT);
+            mQuickplayBackButton.Resize(Constants.QUICKPLAY_ORIGIN_X + Constants.GameSelector_Quickplay_Back_X, Constants.GameSelector_Quickplay_Back_Y, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_QUICKPLAY_BACK.mWidth + 2, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_QUICKPLAY_BACK.mHeight + 2);
+
+            mMoreWaysBackButton = GameButton.MakeNewButton((int)GameSelectorButtons.MoreWaysBack, this, "", null, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MOREWAYS_BACK, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MOREWAYS_BACK_HIGHLIGHT, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MOREWAYS_BACK_HIGHLIGHT);
+            mMoreWaysBackButton.Resize(Constants.MOREWAY_ORIGIN_X + Constants.GameSelector_MoreWaysToPlay_Back_X, Constants.GameSelector_MoreWaysToPlay_Back_Y, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MOREWAYS_BACK.mWidth + 2, AtlasResources.IMAGE_REANIM_SELECTORSCREEN_MOREWAYS_BACK.mHeight + 2);
+
+            mSurvivalButton = GameButton.MakeNewButton((int)GameSelectorButtons.Survival, this, "", null, AtlasResources.IMAGE_REANIM_BUTTON_SURVIVAL, AtlasResources.IMAGE_REANIM_BUTTON_SURVIVAL_LIT, AtlasResources.IMAGE_REANIM_BUTTON_SURVIVAL_LIT);
+            mSurvivalButton.Resize(Constants.MOREWAY_ORIGIN_X + Constants.GameSelector_MoreWaysToPlay_Survival_X, Constants.GameSelector_MoreWaysToPlay_Survival_Y, AtlasResources.IMAGE_REANIM_BUTTON_SURVIVAL.mWidth + 2, AtlasResources.IMAGE_REANIM_BUTTON_SURVIVAL.mHeight + 2);
+            
+            mPuzzleButton = GameButton.MakeNewButton((int)GameSelectorButtons.Puzzle, this, "", null, AtlasResources.IMAGE_REANIM_BUTTON_PUZZLE, AtlasResources.IMAGE_REANIM_BUTTON_PUZZLE_LIT, AtlasResources.IMAGE_REANIM_BUTTON_PUZZLE_LIT);
+            mPuzzleButton.Resize(Constants.MOREWAY_ORIGIN_X + Constants.GameSelector_MoreWaysToPlay_Puzzle_X, Constants.GameSelector_MoreWaysToPlay_Puzzle_Y, AtlasResources.IMAGE_REANIM_BUTTON_PUZZLE.mWidth + 2, AtlasResources.IMAGE_REANIM_BUTTON_PUZZLE.mHeight + 2);
+
+            mQuickplayButton = GameButton.MakeNewButton((int)GameSelectorButtons.Quickplay, this, "", null, AtlasResources.IMAGE_REANIM_BUTTON_QUICKPLAY, AtlasResources.IMAGE_REANIM_BUTTON_QUICKPLAY_LIT, AtlasResources.IMAGE_REANIM_BUTTON_QUICKPLAY_LIT);
+            mQuickplayButton.Resize(Constants.MOREWAY_ORIGIN_X + Constants.GameSelector_MoreWaysToPlay_Quickplay_X, Constants.GameSelector_MoreWaysToPlay_Quickplay_Y, AtlasResources.IMAGE_REANIM_BUTTON_QUICKPLAY.mWidth + 2, AtlasResources.IMAGE_REANIM_BUTTON_QUICKPLAY.mHeight + 2);
+
             mMiniGamesButton.mTranslateX = -1;
             mMoreWaysBackButton.mTranslateX = (mMoreWaysBackButton.mTranslateY = 0);
-            mSelectedQuickplayButtonId = (int)GameSelectorButtons.MiniGames;
-            ToggleGameButton(mSelectedQuickplayButtonId);
+           // mSelectedQuickplayButtonId = (int)GameSelectorButtons.MiniGames;
+           // ToggleGameButton(mSelectedQuickplayButtonId);
             mMoreGamesListWidget = new MoreGamesListWidget(mApp);
 
             //mUserButton = /*GameButton.MakeButton(29, this, "[GAMESELECTOR_SWITCH_USER]");*/new NewLawnButton(null,29,this);
@@ -122,11 +139,18 @@ namespace Lawn
 
             if (mApp.mPlayerInfo != null && mApp.mPlayerInfo.mHasUnlockedPuzzleMode)
             {
+                AddWidget(mPuzzleButton);
                 AddWidget(mVaseBreakerButton);
                 AddWidget(mIZombieButton);
             }
+            if(mApp.mPlayerInfo != null && true /*TODO*/)
+            {
+                AddWidget(mSurvivalButton);
+                AddWidget(mQuickplayButton);//TODO
+            }
             AddWidget(mMiniGamesButton);
             AddWidget(mMoreWaysBackButton);
+            AddWidget(mQuickplayBackButton);
             AddWidget(mAchievementsScrollWidget);
             AddWidget(mLeaderboardButton);
             AddWidget(mMiniGamesScrollWidget);
@@ -366,6 +390,7 @@ namespace Lawn
 
         public void DrawQuickplayArea(Graphics g)
         {
+            g.DrawImage(Resources.IMAGE_SELECTORSCREEN_MOREWAY_BACKGROUND, Constants.MOREWAY_ORIGIN_X, 0);
             g.DrawImage(Resources.IMAGE_SELECTORSCREEN_QUICKPLAY_BACKGROUND, Constants.QUICKPLAY_ORIGIN_X, 0);
             g.DrawImage(AtlasResources.IMAGE_TROPHY, Constants.QUICKPLAY_ORIGIN_X + Constants.BOARD_WIDTH - 155, Constants.BOARD_HEIGHT - 50);
             int num = mApp.GetNumTrophies(ChallengePage.Challenge) + mApp.GetNumTrophies(ChallengePage.Puzzle);
@@ -417,9 +442,16 @@ namespace Lawn
                 wantToExitFromAchievementsViaBackButton = true;
                 mAchievementsScrollWidget.mSpringOverride = 0.6f;
                 break;
-            case GameSelector.GameSelectorScreenState.QuickPlay:
+            case GameSelector.GameSelectorScreenState.MoreWays:
                 ButtonPress(mMoreWaysBackButton.mId);
                 ButtonDepress(mMoreWaysBackButton.mId);
+                break;
+            case GameSelector.GameSelectorScreenState.Survival:
+            case GameSelector.GameSelectorScreenState.MiniGames:
+            case GameSelector.GameSelectorScreenState.Puzzle:
+            case GameSelector.GameSelectorScreenState.QuickPlay:
+                ButtonPress(mQuickplayBackButton.mId);
+                ButtonDepress(mQuickplayBackButton.mId);
                 break;
             }
             return true;
@@ -583,6 +615,7 @@ namespace Lawn
 
         public virtual void ButtonDepress(int theId)
         {
+
             if (mApp.mPlayerInfo == null)
             {
                 return;
@@ -606,9 +639,10 @@ namespace Lawn
             case GameSelectorButtons.Quickplay:
                 mQuickplayWidget.Clear();
                 mQuickplayWidget.SizeToFit();
-                SlideTo(-Constants.QUICKPLAY_ORIGIN_X - 30, 0);
+                SlideTo(-Constants.QUICKPLAY_ORIGIN_X, 0);
                 SlideOutQuickPlayWidget();
                 state = GameSelector.GameSelectorScreenState.QuickPlay;
+                UpdateButton();
                 return;
             case GameSelectorButtons.QuickplayDay:
             case GameSelectorButtons.QuickplayNight:
@@ -626,6 +660,15 @@ namespace Lawn
                 }
                 break;
             case GameSelectorButtons.QuickplayBack:
+                RetractQuickPlayWidget();
+                SlideTo(-Constants.MOREWAY_ORIGIN_X, 0);
+                state = GameSelector.GameSelectorScreenState.Main;//TODO
+                return;
+            case GameSelectorButtons.MoreWays:
+                SlideTo(-Constants.MOREWAY_ORIGIN_X, 0);
+                state = GameSelector.GameSelectorScreenState.Main;//TODO
+                return;
+            case GameSelectorButtons.MoreWaysBack:
                 RetractQuickPlayWidget();
                 SlideTo(-Constants.MAIN_MENU_ORIGIN_X, 0);
                 state = GameSelector.GameSelectorScreenState.Main;
@@ -696,8 +739,25 @@ namespace Lawn
                 mApp.ShowLeaderboardScreen();
                 return;
             case GameSelectorButtons.MiniGames:
+            case GameSelectorButtons.Survival:
+            
+                SlideTo(-Constants.QUICKPLAY_ORIGIN_X, 0);
+                mSelectedQuickplayButtonId = theId;
+                RetractQuickPlayWidget();
+                state = GameSelector.GameSelectorScreenState.MoreGames;//TODO
+                UpdateButton();
+                break;
+            case GameSelectorButtons.Puzzle:
+                SlideTo(-Constants.QUICKPLAY_ORIGIN_X, 0);
+                ToggleGameButton((int)GameSelectorButtons.IZombie);
+                mSelectedQuickplayButtonId = (int)GameSelectorButtons.IZombie;
+                RetractQuickPlayWidget();
+                state = GameSelector.GameSelectorScreenState.Puzzle;//TODO
+                UpdateButton();
+                break;
             case GameSelectorButtons.Vasebreaker:
             case GameSelectorButtons.IZombie:
+                SlideTo(-Constants.QUICKPLAY_ORIGIN_X, 0);
                 if (theId != mSelectedQuickplayButtonId)
                 {
                     ToggleGameButton(mSelectedQuickplayButtonId);
@@ -705,7 +765,7 @@ namespace Lawn
                     mSelectedQuickplayButtonId = theId;
                     RetractQuickPlayWidget();
                 }
-                state = GameSelector.GameSelectorScreenState.MoreGames;
+                state = GameSelector.GameSelectorScreenState.Puzzle;//TODO
                 break;
             case GameSelectorButtons.ZenGarden:
                 mApp.KillGameSelector();
@@ -982,6 +1042,16 @@ namespace Lawn
             }
         }
 
+
+        public void UpdateButton()
+        {
+            bool flag = (state == GameSelectorScreenState.Puzzle);
+            Debug.Log("Puzzle" + flag);
+            mIZombieButton.mVisible = flag;
+            mIZombieButton.mDisabled = !flag;
+            mVaseBreakerButton.mVisible = flag;
+            mVaseBreakerButton.mDisabled = !flag;
+        }
         public void SlideOutQuickPlayWidget()
         {
             mQuickplayScrollWidget.ScrollToMin(false);
@@ -1002,14 +1072,22 @@ namespace Lawn
             MiniGameMode mode = MiniGameMode.Games;
             switch (mSelectedQuickplayButtonId)
             {
-            case 121:
+            case (int)GameSelectorButtons.MiniGames:
                 mode = MiniGameMode.Games;
                 break;
-            case 122:
+            case (int)GameSelectorButtons.Vasebreaker:
                 mode = MiniGameMode.Vasebreaker;
                 break;
-            case 123:
+            case (int)GameSelectorButtons.Puzzle:
+            case (int)GameSelectorButtons.IZombie:
                 mode = MiniGameMode.IZombie;
+                break;
+            case (int)GameSelectorButtons.Survival:
+                mode = MiniGameMode.Survival;
+                break;
+            case (int)GameSelectorButtons.Quickplay:
+            case (int)GameSelectorButtons.QuickplayDay:
+                mode = MiniGameMode.QuickplayDay;
                 break;
             }
             mMiniGamesWidget.SwitchMode(mode);
@@ -1020,14 +1098,23 @@ namespace Lawn
             DialogButton dialogButton;
             switch (theId)
             {
-            case 121:
+            case (int)GameSelectorButtons.MiniGames:
                 dialogButton = mMiniGamesButton;
                 break;
-            case 122:
+            case (int)GameSelectorButtons.Vasebreaker:
                 dialogButton = mVaseBreakerButton;
                 break;
-            case 123:
+            case (int)GameSelectorButtons.IZombie:
                 dialogButton = mIZombieButton;
+                break;
+            case (int)GameSelectorButtons.Survival:
+                dialogButton = mSurvivalButton;
+                break;
+            case (int)GameSelectorButtons.Puzzle:
+                dialogButton = mPuzzleButton;
+                break;
+            case (int)GameSelectorButtons.Quickplay:
+                dialogButton = mQuickplayButton;
                 break;
             default:
                 return;
@@ -1085,9 +1172,17 @@ namespace Lawn
 
         public DialogButton mMiniGamesButton;
 
+        public DialogButton mPuzzleButton;
+
+        public DialogButton mQuickplayButton;
+
+        public DialogButton mSurvivalButton;//生存模式按钮
+
         public DialogButton mVaseBreakerButton;
 
         public DialogButton mIZombieButton;
+
+        public DialogButton mQuickplayBackButton;
 
         public DialogButton mMoreWaysBackButton;
 
@@ -1180,6 +1275,10 @@ namespace Lawn
             Main,
             MoreGames,
             Achievements,
+            MoreWays,
+            MiniGames,
+            Puzzle,
+            Survival,
             QuickPlay
         }
     }
